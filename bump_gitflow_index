@@ -57,7 +57,7 @@ def bump
   formatted = parts.map.with_index do |e, i|
     bump_version(e, i)
   end
-  puts create_branch_and_tag(formatted.join("."))
+  exec create_branch_and_tag(formatted.join("."))
 end
 
 if VERSION_INDEX.keys.include?(@release_type)
