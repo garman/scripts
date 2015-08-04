@@ -32,10 +32,18 @@ def format_major(tag)
   "#{tag.split(".")[0]}.00.00"
 end
 
+def format_minor(tag)
+  parts = tag.split(".")
+  "#{parts[0]}.#{parts[1]}.00"
+end
+
 def create_branch_and_tag(tag)
-  if @release_type == :hotfix
+  case @release_type
+  when :hotfix
     "git flow hotfix start #{tag}"
-  else
+  when :minor
+    "git flow release start #{format_minor(tag)}"
+  when :major
     "git flow release start #{format_major(tag)}"
   end
 end
