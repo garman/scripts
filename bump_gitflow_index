@@ -17,7 +17,7 @@ VERSION_INDEX = { major: 0, minor: 1, hotfix: 2 }
 @index = VERSION_INDEX[@release_type]
 
 def increment(part)
-  (part.to_i + 1).to_s.rjust(2, "0")
+  (part.to_i + 1).to_s
 end
 
 def increment_major(part)
@@ -29,12 +29,12 @@ def major_bump?
 end
 
 def format_major(tag)
-  "#{tag.split(".")[0]}.00.00"
+  "#{tag.split(".")[0]}.0.0"
 end
 
 def format_minor(tag)
   parts = tag.split(".")
-  "#{parts[0]}.#{parts[1]}.00"
+  "#{parts[0]}.#{parts[1]}.0"
 end
 
 def create_branch_and_tag(tag)
