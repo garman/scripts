@@ -34,7 +34,7 @@ end
 
 def format_minor(tag)
   parts = tag.split(".")
-  "#{parts[0]}.#{parts[1]}.0"
+  "#{parts[0]}.#{increment(parts[1])}.0"
 end
 
 def create_branch_and_tag(tag)
