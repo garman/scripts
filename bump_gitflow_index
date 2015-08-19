@@ -38,6 +38,7 @@ def format_minor(tag)
 end
 
 def create_branch_and_tag(tag)
+  puts "New tag: #{tag}"
   case @release_type
   when :hotfix
     "git flow hotfix start #{tag}"
@@ -61,7 +62,9 @@ def bump_version(part, map_index)
 end
 
 def bump
-  parts = `git describe --abbrev=0 --tags`.gsub("\n", "").split(".")
+  parts = `git describe --tags $(git rev-list --tags --max-count=1)`.gsub("\n", "").split(".")
+  print "Current tag: #{parts.join(".")}"
+  puts
   formatted = parts.map.with_index do |e, i|
     bump_version(e, i)
   end
