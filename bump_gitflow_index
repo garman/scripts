@@ -38,13 +38,15 @@ def format_minor(tag)
 end
 
 def create_branch_and_tag(tag)
-  puts "New tag: #{tag}"
   case @release_type
   when :hotfix
+    puts "New tag: #{tag}"
     "git flow hotfix start #{tag}"
   when :minor
+    puts "New tag: #{format_minor(tag)}"
     "git flow release start #{format_minor(tag)}"
   when :major
+    puts "New tag: #{format_major(tag)}"
     "git flow release start #{format_major(tag)}"
   end
 end
